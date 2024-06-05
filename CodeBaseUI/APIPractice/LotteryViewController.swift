@@ -104,23 +104,7 @@ class LotteryViewController: UIViewController {
 }
 
 
-extension LotteryViewController: UITextFieldDelegate {
-    
-//    func textFieldShouldReturn(_ sender: UITextField) -> Bool {
-//        if sender == textField {
-//            guard let word = textField.text else {
-//                return true
-//            }
-//            textField.resignFirstResponder()
-//            
-//            print(textField.text)
-//            guard let input = textField.text else {return true}
-//            guard let drwNo = Int(input) else {return true}
-//            searchLotto(drwNo)
-//        }
-//        return true
-//    }
-}
+extension LotteryViewController: UITextFieldDelegate {}
 
 extension LotteryViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
@@ -131,21 +115,12 @@ extension LotteryViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return drwNoList.count
-//        if component == 0 {
-//            return 3
-//        } else {
-//            return 10
-//        }
+
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return String(drwNoList[row])
         
-//        if component == 0 {
-//            return "Jack"
-//        } else {
-//            return "afdsafasfsdaf"
-//        }
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

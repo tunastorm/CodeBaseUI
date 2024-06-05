@@ -26,6 +26,8 @@
 		BCD9CB1F2C103EDD00FC0C57 /* BoxOfficeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD9CB1E2C103EDD00FC0C57 /* BoxOfficeViewController.swift */; };
 		BCD9CB212C10440E00FC0C57 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD9CB202C10440E00FC0C57 /* APIKey.swift */; };
 		BCD9CB232C10610F00FC0C57 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD9CB222C10610F00FC0C57 /* Data.swift */; };
+		BCD9CB252C10A84D00FC0C57 /* BoxOfficeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD9CB242C10A84D00FC0C57 /* BoxOfficeTableViewCell.swift */; };
+		BCD9CB282C10B94C00FC0C57 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = BCD9CB272C10B94C00FC0C57 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,7 @@
 		BCD9CB1E2C103EDD00FC0C57 /* BoxOfficeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeViewController.swift; sourceTree = "<group>"; };
 		BCD9CB202C10440E00FC0C57 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		BCD9CB222C10610F00FC0C57 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		BCD9CB242C10A84D00FC0C57 /* BoxOfficeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCD9CB282C10B94C00FC0C57 /* Kingfisher in Frameworks */,
 				BC6D8EC32C0F1DE900051C0E /* SnapKit in Frameworks */,
 				BC6D8EC62C0F1DF200051C0E /* Alamofire in Frameworks */,
 			);
@@ -124,6 +128,7 @@
 				BCD9CB1A2C103CF300FC0C57 /* LotteryViewController.swift */,
 				BCD9CB1E2C103EDD00FC0C57 /* BoxOfficeViewController.swift */,
 				BCD9CB222C10610F00FC0C57 /* Data.swift */,
+				BCD9CB242C10A84D00FC0C57 /* BoxOfficeTableViewCell.swift */,
 			);
 			path = APIPractice;
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 			packageProductDependencies = (
 				BC6D8EC22C0F1DE900051C0E /* SnapKit */,
 				BC6D8EC52C0F1DF200051C0E /* Alamofire */,
+				BCD9CB272C10B94C00FC0C57 /* Kingfisher */,
 			);
 			productName = CodeBaseUI;
 			productReference = BC6D8E9E2C0EFBB600051C0E /* CodeBaseUI.app */;
@@ -179,6 +185,7 @@
 			packageReferences = (
 				BC6D8EC12C0F1DE800051C0E /* XCRemoteSwiftPackageReference "SnapKit" */,
 				BC6D8EC42C0F1DF200051C0E /* XCRemoteSwiftPackageReference "Alamofire" */,
+				BCD9CB262C10B94C00FC0C57 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = BC6D8E9F2C0EFBB600051C0E /* Products */;
 			projectDirPath = "";
@@ -213,6 +220,7 @@
 				BC6D8EA22C0EFBB600051C0E /* AppDelegate.swift in Sources */,
 				BCD9CAB22C0F363900FC0C57 /* EmotionViewController.swift in Sources */,
 				BCD9CB1B2C103CF300FC0C57 /* LotteryViewController.swift in Sources */,
+				BCD9CB252C10A84D00FC0C57 /* BoxOfficeTableViewCell.swift in Sources */,
 				BC6D8EBB2C0EFDAC00051C0E /* UIExtension.swift in Sources */,
 				BCD9CB232C10610F00FC0C57 /* Data.swift in Sources */,
 				BC6D8EA42C0EFBB600051C0E /* SceneDelegate.swift in Sources */,
@@ -459,6 +467,14 @@
 				minimumVersion = 5.9.1;
 			};
 		};
+		BCD9CB262C10B94C00FC0C57 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -471,6 +487,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BC6D8EC42C0F1DF200051C0E /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		BCD9CB272C10B94C00FC0C57 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BCD9CB262C10B94C00FC0C57 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
