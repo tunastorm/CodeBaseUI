@@ -28,7 +28,6 @@ class EmotionViewController: UIViewController {
         configHierarchy()
         configLayout()
         configUI()
-    
     }
     
     
@@ -164,8 +163,6 @@ class EmotionViewController: UIViewController {
     }
     
     func configUI() {
-        
-        
 //        rectView.backgroundColor = .white
 //        firstRow.backgroundColor = .yellow
 //        secondRow.backgroundColor = .yellow
