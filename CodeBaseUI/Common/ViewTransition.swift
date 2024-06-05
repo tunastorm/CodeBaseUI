@@ -9,6 +9,8 @@ import UIKit
 
 
 protocol ViewTransition {
+   
+//   associatedtype data
     
    func pushAfterView<T> (view: UIViewController, data: T?)
     
@@ -39,8 +41,13 @@ protocol ViewTransition {
 //}
 
 
+// 제네릭, 프로토콜
+// some -> Opaque Type, any -> Existential Type
+// WWDC
 extension UIViewController: ViewTransition {
     
+//    typealias data = <#type#>
+     
     func pushAfterView<T> (view: UIViewController, data: T?) {
 //        if let data {
 //            DataRouter<T> = data

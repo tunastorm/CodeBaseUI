@@ -12,7 +12,7 @@
 		BC6D8EA62C0EFBB600051C0E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6D8EA52C0EFBB600051C0E /* ViewController.swift */; };
 		BC6D8EAB2C0EFBB700051C0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC6D8EAA2C0EFBB700051C0E /* Assets.xcassets */; };
 		BC6D8EAE2C0EFBB700051C0E /* Base in Resources */ = {isa = PBXBuildFile; fileRef = BC6D8EAD2C0EFBB700051C0E /* Base */; };
-		BC6D8EBB2C0EFDAC00051C0E /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6D8EBA2C0EFDAC00051C0E /* Extension.swift */; };
+		BC6D8EBB2C0EFDAC00051C0E /* UIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6D8EBA2C0EFDAC00051C0E /* UIExtension.swift */; };
 		BC6D8EBE2C0F02C900051C0E /* ReusableIdentifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6D8EBD2C0F02C900051C0E /* ReusableIdentifier.swift */; };
 		BC6D8EC02C0F02EF00051C0E /* ViewTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6D8EBF2C0F02EF00051C0E /* ViewTransition.swift */; };
 		BC6D8EC32C0F1DE900051C0E /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = BC6D8EC22C0F1DE900051C0E /* SnapKit */; };
@@ -24,6 +24,8 @@
 		BCD9CB1B2C103CF300FC0C57 /* LotteryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD9CB1A2C103CF300FC0C57 /* LotteryViewController.swift */; };
 		BCD9CB1D2C103D9100FC0C57 /* CodeBaseUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD9CB1C2C103D9100FC0C57 /* CodeBaseUI.swift */; };
 		BCD9CB1F2C103EDD00FC0C57 /* BoxOfficeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD9CB1E2C103EDD00FC0C57 /* BoxOfficeViewController.swift */; };
+		BCD9CB212C10440E00FC0C57 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD9CB202C10440E00FC0C57 /* APIKey.swift */; };
+		BCD9CB232C10610F00FC0C57 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD9CB222C10610F00FC0C57 /* Data.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +36,7 @@
 		BC6D8EAA2C0EFBB700051C0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC6D8EAD2C0EFBB700051C0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC6D8EAF2C0EFBB700051C0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BC6D8EBA2C0EFDAC00051C0E /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		BC6D8EBA2C0EFDAC00051C0E /* UIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtension.swift; sourceTree = "<group>"; };
 		BC6D8EBD2C0F02C900051C0E /* ReusableIdentifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableIdentifier.swift; sourceTree = "<group>"; };
 		BC6D8EBF2C0F02EF00051C0E /* ViewTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewTransition.swift; sourceTree = "<group>"; };
 		BCD9CAB12C0F363900FC0C57 /* EmotionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionViewController.swift; sourceTree = "<group>"; };
@@ -44,6 +46,8 @@
 		BCD9CB1A2C103CF300FC0C57 /* LotteryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LotteryViewController.swift; sourceTree = "<group>"; };
 		BCD9CB1C2C103D9100FC0C57 /* CodeBaseUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeBaseUI.swift; sourceTree = "<group>"; };
 		BCD9CB1E2C103EDD00FC0C57 /* BoxOfficeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxOfficeViewController.swift; sourceTree = "<group>"; };
+		BCD9CB202C10440E00FC0C57 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		BCD9CB222C10610F00FC0C57 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +92,7 @@
 				BC6D8EAA2C0EFBB700051C0E /* Assets.xcassets */,
 				BC6D8EAC2C0EFBB700051C0E /* LaunchScreen.storyboard */,
 				BC6D8EAF2C0EFBB700051C0E /* Info.plist */,
-				BC6D8EBA2C0EFDAC00051C0E /* Extension.swift */,
+				BC6D8EBA2C0EFDAC00051C0E /* UIExtension.swift */,
 				BCD9CB012C0FE64900FC0C57 /* TestViewController.swift */,
 			);
 			path = CodeBaseUI;
@@ -100,6 +104,7 @@
 				BC6D8EBD2C0F02C900051C0E /* ReusableIdentifier.swift */,
 				BC6D8EBF2C0F02EF00051C0E /* ViewTransition.swift */,
 				BCD9CB1C2C103D9100FC0C57 /* CodeBaseUI.swift */,
+				BCD9CB202C10440E00FC0C57 /* APIKey.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -118,6 +123,7 @@
 			children = (
 				BCD9CB1A2C103CF300FC0C57 /* LotteryViewController.swift */,
 				BCD9CB1E2C103EDD00FC0C57 /* BoxOfficeViewController.swift */,
+				BCD9CB222C10610F00FC0C57 /* Data.swift */,
 			);
 			path = APIPractice;
 			sourceTree = "<group>";
@@ -207,11 +213,13 @@
 				BC6D8EA22C0EFBB600051C0E /* AppDelegate.swift in Sources */,
 				BCD9CAB22C0F363900FC0C57 /* EmotionViewController.swift in Sources */,
 				BCD9CB1B2C103CF300FC0C57 /* LotteryViewController.swift in Sources */,
-				BC6D8EBB2C0EFDAC00051C0E /* Extension.swift in Sources */,
+				BC6D8EBB2C0EFDAC00051C0E /* UIExtension.swift in Sources */,
+				BCD9CB232C10610F00FC0C57 /* Data.swift in Sources */,
 				BC6D8EA42C0EFBB600051C0E /* SceneDelegate.swift in Sources */,
 				BCD9CB1F2C103EDD00FC0C57 /* BoxOfficeViewController.swift in Sources */,
 				BC6D8EC02C0F02EF00051C0E /* ViewTransition.swift in Sources */,
 				BCD9CB022C0FE64900FC0C57 /* TestViewController.swift in Sources */,
+				BCD9CB212C10440E00FC0C57 /* APIKey.swift in Sources */,
 				BCD9CAB42C0F45FF00FC0C57 /* NetflixViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,12 +364,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F8FT97JYZT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CodeBaseUI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -387,12 +395,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = F8FT97JYZT;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CodeBaseUI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
