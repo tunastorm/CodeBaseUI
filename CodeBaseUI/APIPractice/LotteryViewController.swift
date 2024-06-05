@@ -28,62 +28,138 @@ class LotteryViewController: UIViewController {
         return stackView
     }()
     let bonusLabel = UILabel()
+
+    var data: [Lotto] = []
     
-    lazy var testNumbers: [Int] = {
-        var testList: [Int] = []
-        for i in 0...6 {
-            testList.append(Int.random(in: 1...45))
-        }
-        return testList
-    }()
-    
-    lazy var data: [Lotto] = []
+    let picker = UIPickerView()
+
+    var latestNo: Int = 1122
+    var drwNoList: [Int] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getLottoData()
+        print(#function, "view did Loaded")
+        setDelegate()
+        setDrwNoList()
         configHierarchy()
         configLayout()
         configUI()
+        getLottoData(latestNo)
     }
     
-    func textFieldShouldReturn(_ sender: UITextField) -> Bool {
-        if sender == textField {
-            guard let word = textField.text else {
-                return true
-            }
-            textField.resignFirstResponder()
+    func setDelegate() {
+        textField.delegate = self
+        picker.delegate = self
+        picker.dataSource = self
+    }
+    
+    func setDrwNoList() {
+        for i in 1...latestNo {
+            drwNoList.append(i)
         }
-        return true
     }
     
-    func getLottoData() {
-        
-        var drwNo = 1
-        repeat {
-            let url = APIURL.lottoURL + String(drwNo)
-            AF.request(url).responseDecodable(of: Lotto.self) { response in
-                switch response.result {
-                case .success(let value): // value가 Lotto 구조체 형태로 변환됨=
-                    if value.returnValue == "fail" {
-                        self.view.layoutIfNeeded()
-                        break
-                    }
-                    print("- drwNo: \(drwNo): \(value)")
-                    self.data.append(value)
-                    drwNo = value.drwNo + 1
-                case .failure(let error):
-                    print(#function + " 실패!!!\n \(error)")
+    func getLottoData(_ drwNo: Int) {
+        let url = APIURL.lottoURL + String(drwNo)
+        AF.request(url).responseDecodable(of: Lotto.self) { response in
+            switch response.result {
+            case .success(let value): // value가 Lotto 구조체 형태로 변환됨=
+                print("- drwNo: \(drwNo): \(value)")
+                if value.returnValue == "fail" {
                     break
                 }
+                self.data.append(value)
+                self.updateLottotUI(value)
+            case .failure(let error):
+                print(#function + " 실패!!!\n \(error)")
+                break
             }
-        } while(true)
-
+        }
+        
+    }
+    
+    func updateLottotUI(_ data: Lotto) {
+        let drwtNoList = [data.drwtNo1, data.drwtNo2, data.drwtNo3,
+                          data.drwtNo4, data.drwtNo5, data.drwtNo6, 0, data.bnusNo]
+        configNoticeUI()
+        configDateUI(data.drwNoDate)
+        configResultTitleUI(data.drwNo)
+        configBallStackUI(drwtNoList)
+        configBonusUI()
+    }
+    
+    func searchLotto(_ dwtNo: Int) {
+        let resultArr = data.filter{
+            $0.drwNo == dwtNo
+        }
+        if resultArr.isEmpty {
+            getLottoData(dwtNo)
+        } else {
+            if let data = resultArr.first {
+                updateLottotUI(data)
+            }
+        }
     }
 }
 
-extension LotteryViewController: CodeBaseUI {
+
+extension LotteryViewController: UITextFieldDelegate {
     
+//    func textFieldShouldReturn(_ sender: UITextField) -> Bool {
+//        if sender == textField {
+//            guard let word = textField.text else {
+//                return true
+//            }
+//            textField.resignFirstResponder()
+//            
+//            print(textField.text)
+//            guard let input = textField.text else {return true}
+//            guard let drwNo = Int(input) else {return true}
+//            searchLotto(drwNo)
+//        }
+//        return true
+//    }
+}
+
+extension LotteryViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return drwNoList.count
+//        if component == 0 {
+//            return 3
+//        } else {
+//            return 10
+//        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return String(drwNoList[row])
+        
+//        if component == 0 {
+//            return "Jack"
+//        } else {
+//            return "afdsafasfsdaf"
+//        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let drwNo = drwNoList[row]
+        textField.text = String(drwNo)
+        searchLotto(drwNo)
+        print("select", component, row)
+    }
+}
+
+
+
+extension LotteryViewController: CodeBaseUI {
+  
     func configHierarchy() {
         view.addSubview(filterView)
         view.addSubview(resultView)
@@ -166,23 +242,12 @@ extension LotteryViewController: CodeBaseUI {
             $0.top.equalTo(ballStackView.snp.bottom)
             $0.trailing.equalToSuperview().inset(10)
         }
-        
     }
     
     func configUI() {
         view.backgroundColor = .white
         configFilterViewUI()
         configTextFieldUI()
-        print("data: \(data)")
-        if data.isEmpty {
-            configTitleUI()
-        } else {
-            configNoticeUI()
-            configDateUI()
-            configResultTitleUI()
-            configBallStackUI()
-            configBonusUI()
-        }
     }
     
     func configFilterViewUI() {
@@ -194,6 +259,7 @@ extension LotteryViewController: CodeBaseUI {
         textField.layer.borderWidth = 1
         textField.layer.borderColor = UIColor.systemGray5.cgColor
         textField.font = .boldSystemFont(ofSize: 20)
+        textField.inputView = picker
     }
     
     
@@ -204,8 +270,7 @@ extension LotteryViewController: CodeBaseUI {
         noticeLabel.textAlignment = .left
     }
     
-    func configDateUI() {
-        let date = "2024-06-05"
+    func configDateUI(_ date: String) {
         dateLabel.text = "\(date) 추첨"
         dateLabel.textColor = .gray
         dateLabel.font = .systemFont(ofSize: 12)
@@ -219,37 +284,31 @@ extension LotteryViewController: CodeBaseUI {
         titleLabel.textAlignment = .center
     }
     
-    func configResultTitleUI() {
-        if let number = textField.text {
-            titleLabel.text = "\(number)회 당첨결과"
-            titleLabel.font = .boldSystemFont(ofSize: 20)
-            titleLabel.textColor = .gray
-            titleLabel.textAlignment = .center
-            titleLabel.numberOfLines = 1
-            
-            if let title = titleLabel.text {
-                var attributedStr = NSMutableAttributedString(string: title)
-                attributedStr.addAttribute(.foregroundColor, value: UIColor.orange, 
-                                           range: (title as NSString).range(of: "\(number)회"))
-                titleLabel.attributedText = attributedStr
-            }
+    func configResultTitleUI(_ drwNo: Int) {
+        titleLabel.text = "\(drwNo)회 당첨결과"
+        titleLabel.font = .boldSystemFont(ofSize: 20)
+        titleLabel.textColor = .gray
+        titleLabel.textAlignment = .center
+        titleLabel.numberOfLines = 1
+        
+        if let title = titleLabel.text {
+            var attributedStr = NSMutableAttributedString(string: title)
+            attributedStr.addAttribute(.foregroundColor, value: UIColor.orange,
+                                       range: (title as NSString).range(of: "\(drwNo)회"))
+            titleLabel.attributedText = attributedStr
         }
     }
     
     
-    func configBallStackUI() {
+    func configBallStackUI(_ drwtNoList: [Int]) {
+       
         for (idx,view) in ballStackView.arrangedSubviews.enumerated() {
-//            if idx % 2 == 0 {
-//                label.backgroundColor = .systemMint
-//            } else {
-//                label.backgroundColor = .purple
-//            }
+            
             for labelView in view.subviews {
                 let label = labelView as! UILabel
                 if idx != 6 {
-                    guard let number = testNumbers.popLast() else {return}// API 연동 후 response 값 할당
                     var color: UIColor = .clear
-                    switch number {
+                    switch drwtNoList[idx] {
                     case 1...10: color = .yellow
                     case 11...20: color = .blue
                     case 21...30: color = .red
@@ -257,14 +316,13 @@ extension LotteryViewController: CodeBaseUI {
                     case 41...45: color = .green
                     default: print("Error")
                     }
-                    
                     label.backgroundColor = color // 숫자에 맞춰서 변경
                     label.layer.cornerRadius = 20
                     label.layer.masksToBounds = true
                     label.font = .boldSystemFont(ofSize: 20)
                     label.textColor = .white
                     label.textAlignment = .center
-                    label.text = "\(number)"
+                    label.text = "\(drwtNoList[idx])"
                 } else if idx == 6 {
                     label.text = "+"
                     label.textColor = .black
