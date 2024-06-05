@@ -33,6 +33,9 @@ class EmotionViewController: UIViewController {
     
     func setNavigationBar() {
         self.navigationItem.title = "감정 다이어리"
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
+        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+        self.navigationController?.navigationBar.tintColor = .black
         
         view.tintColor = .black
         if let backgroundImage = UIImage(named: "scratched paper") {

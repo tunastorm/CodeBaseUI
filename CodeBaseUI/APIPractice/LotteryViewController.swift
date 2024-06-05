@@ -18,6 +18,7 @@ class LotteryViewController: UIViewController {
     let textField = UITextField()
     let noticeLabel = UILabel()
     let dateLabel = UILabel()
+    let lineView = UIView()
     
     let titleLabel = UILabel()
     lazy var ballStackView = {
@@ -142,6 +143,7 @@ extension LotteryViewController: CodeBaseUI {
         filterView.addSubview(noticeLabel)
         filterView.addSubview(dateLabel)
         
+        resultView.addSubview(lineView)
         resultView.addSubview(titleLabel)
         resultView.addSubview(ballStackView)
         resultView.addSubview(bonusLabel)
@@ -167,34 +169,44 @@ extension LotteryViewController: CodeBaseUI {
             $0.height.equalTo(view.frame.height * 0.2)
             $0.top.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
         }
+        
         resultView.snp.makeConstraints{
             $0.height.equalTo(view.frame.height * 0.6)
             $0.top.equalTo(filterView.snp.bottom)
             $0.bottom.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
         }
+        
         textField.snp.makeConstraints{
             $0.height.equalTo(50)
             $0.top.equalToSuperview().inset(20)
             $0.horizontalEdges.equalToSuperview().inset(20)
         }
+        
         noticeLabel.snp.makeConstraints{
             $0.width.equalTo(100)
             $0.height.equalTo(20)
             $0.leading.equalToSuperview().inset(10)
             $0.bottom.equalToSuperview().inset(10)
         }
+        
         dateLabel.snp.makeConstraints{
             $0.width.equalTo(100)
             $0.height.equalTo(20)
             $0.trailing.equalToSuperview().inset(10)
             $0.bottom.equalToSuperview().inset(10)
         }
+    
+        lineView.snp.makeConstraints{
+            $0.height.equalTo(1)
+            $0.top.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview().inset(10)
+        }
         
         let titleWidth = view.frame.width * 0.4
         titleLabel.snp.makeConstraints{
             $0.height.equalTo(50)
             $0.width.equalTo(titleWidth)
-            $0.top.equalToSuperview().inset(40)
+            $0.top.equalTo(lineView.snp.bottom).offset(40)
             $0.centerX.equalToSuperview()
         }
         
@@ -205,7 +217,6 @@ extension LotteryViewController: CodeBaseUI {
         }
         
         for view in ballStackView.arrangedSubviews {
-            
             view.snp.makeConstraints{
                 $0.width.equalTo(44)
             }
@@ -221,8 +232,11 @@ extension LotteryViewController: CodeBaseUI {
     
     func configUI() {
         view.backgroundColor = .white
+        self.navigationController?.navigationBar.tintColor = .black
+      
         configFilterViewUI()
         configTextFieldUI()
+        configLineUI()
     }
     
     func configFilterViewUI() {
@@ -252,6 +266,10 @@ extension LotteryViewController: CodeBaseUI {
         dateLabel.textAlignment = .right
     }
     
+    func configLineUI() {
+        lineView.backgroundColor = .lightGray
+    }
+    
     func configTitleUI() {
         titleLabel.text = "로딩 중..."
         titleLabel.font = .boldSystemFont(ofSize: 20)
@@ -268,7 +286,7 @@ extension LotteryViewController: CodeBaseUI {
         
         if let title = titleLabel.text {
             var attributedStr = NSMutableAttributedString(string: title)
-            attributedStr.addAttribute(.foregroundColor, value: UIColor.orange,
+            attributedStr.addAttribute(.foregroundColor, value: UIColor.systemYellow,
                                        range: (title as NSString).range(of: "\(drwNo)회"))
             titleLabel.attributedText = attributedStr
         }
@@ -284,11 +302,11 @@ extension LotteryViewController: CodeBaseUI {
                 if idx != 6 {
                     var color: UIColor = .clear
                     switch drwtNoList[idx] {
-                    case 1...10: color = .yellow
-                    case 11...20: color = .blue
-                    case 21...30: color = .red
-                    case 31...40: color = .gray
-                    case 41...45: color = .green
+                    case 1...10: color = .systemYellow
+                    case 11...20: color = .systemTeal
+                    case 21...30: color = .systemPink
+                    case 31...40: color = .systemGray3
+                    case 41...45: color = .systemGreen
                     default: print("Error")
                     }
                     label.backgroundColor = color // 숫자에 맞춰서 변경

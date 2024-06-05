@@ -145,6 +145,7 @@ extension NetflixViewController {
         navigationItem.title = "고래밥님"
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
         self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+        self.navigationController?.navigationBar.tintColor = .white
     }
     
     func configHierarchy() {
@@ -186,14 +187,17 @@ extension NetflixViewController {
             $0.height.equalTo(view.frame.height * 0.6)
             $0.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
         }
+        
         hotView.snp.makeConstraints{
             $0.bottom.horizontalEdges.equalTo(view.safeAreaLayoutGuide)
             $0.top.equalTo(mainView.snp.bottom)
         }
+        
         mainImageArea.snp.makeConstraints{
             $0.horizontalEdges.equalTo(mainView.snp.horizontalEdges).inset(20)
             $0.verticalEdges.equalTo(mainView.snp.verticalEdges).offset(5)
         }
+        
         hotLabel.snp.makeConstraints{
             $0.height.equalTo(20)
             $0.top.leading.equalToSuperview().inset(5)
@@ -206,12 +210,14 @@ extension NetflixViewController {
             $0.bottom.equalToSuperview().inset(10)
             $0.top.equalTo(hotLabel.snp.bottom).offset(10)
         }
+        
         hotImageArea2.snp.makeConstraints{
             $0.width.equalTo(hotXInset)
             $0.height.equalTo(hotImageArea1)
             $0.leading.equalTo(hotImageArea1.snp.trailing).offset(10)
             $0.bottom.equalToSuperview().inset(10)
         }
+        
         hotImageArea3.snp.makeConstraints{
             $0.width.equalTo(hotXInset)
             $0.height.equalTo(hotImageArea2)
@@ -219,38 +225,47 @@ extension NetflixViewController {
             $0.trailing.equalToSuperview().inset(20)
             $0.bottom.equalToSuperview().inset(10)
         }
+        
         mainImageView.snp.makeConstraints{
             $0.height.equalToSuperview()
             $0.edges.equalToSuperview()
         }
+        
         coverImageView.snp.makeConstraints{
             $0.height.equalToSuperview()
             $0.edges.equalToSuperview()
         }
+        
         firstHotImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        
         secondHotImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        
         thirdHotImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        
         topImageView1.snp.makeConstraints{
             $0.height.equalToSuperview().multipliedBy(0.25)
             $0.width.equalToSuperview().multipliedBy(0.25)
             $0.trailing.top.equalToSuperview()
         }
+        
         topImageView2.snp.makeConstraints{
             $0.height.equalToSuperview().multipliedBy(0.25)
             $0.width.equalToSuperview().multipliedBy(0.25)
             $0.trailing.top.equalToSuperview()
         }
+        
         topImageView3.snp.makeConstraints{
             $0.height.equalToSuperview().multipliedBy(0.25)
             $0.width.equalToSuperview().multipliedBy(0.25)
             $0.trailing.top.equalToSuperview()
         }
+        
         mainButtonArea.snp.makeConstraints{
             $0.height.equalTo(70)
             $0.horizontalEdges.equalToSuperview().inset(20)
@@ -273,6 +288,7 @@ extension NetflixViewController {
             $0.width.equalTo(150)
             $0.top.equalTo(descLabel).offset(30)
             $0.trailing.bottom.equalToSuperview()
+            $0.leading.greaterThanOrEqualTo(playImageView.snp.trailing).offset(5)
         }
     
     }

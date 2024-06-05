@@ -13,6 +13,7 @@ import Kingfisher
 class BoxOfficeViewController: UIViewController {
 
     let textField = UITextField()
+    let lineView = UIView()
     let picker = UIPickerView()
     let tableView = UITableView()
     let backgroundView = UIView()
@@ -23,6 +24,11 @@ class BoxOfficeViewController: UIViewController {
     let dateFormatter = DateFormatter()
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        let yesterDay = getYesterDayDate()
+        getBoxOfficeData(yesterDay)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setBaseSettings()
@@ -30,9 +36,6 @@ class BoxOfficeViewController: UIViewController {
         configHierarchy()
         configLayout()
         configUI()
-        
-        let yesterDay = getYesterDayDate()
-        getBoxOfficeData(yesterDay)
     }
     
     func setBaseSettings() {
@@ -74,16 +77,17 @@ class BoxOfficeViewController: UIViewController {
     }
         
     func getYesterDayDate() -> String {
-        // firstDay = 20031111
+        // 자정 이후 전일의 데이터가 DB에 인서트되기 전까지는 데이터를 불러오지 못함
+        // 인서트되는 시간을 파악하여 시간설정 시에 예외처리하면 좋을 듯
         let today = Date()
-        let yesterDate = today.addingTimeInterval(-90000)
-        
+        var yesterDate = today.addingTimeInterval(-86400)
+    
         dateFormatter.dateFormat = "yyyyMMdd"
-        
         var yesterDay = dateFormatter.string(from: yesterDate)
         
       return yesterDay
     }
+    
 }
 
 extension BoxOfficeViewController: UITableViewDelegate, UITableViewDataSource {
@@ -137,40 +141,54 @@ extension BoxOfficeViewController: CodeBaseUI {
         view.addSubview(backgroundImage)
         view.addSubview(backgroundView)
         view.addSubview(textField)
+        view.addSubview(lineView)
         view.addSubview(tableView)
     }
     
     func configLayout() {
         backgroundImage.snp.makeConstraints{
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
+            $0.edges.equalToSuperview()
         }
         backgroundView.snp.makeConstraints{
-            $0.edges.equalTo(view.safeAreaLayoutGuide)
+            $0.edges.equalToSuperview()
         }
         textField.snp.makeConstraints{
             $0.height.equalTo(50)
             $0.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(50)
         }
+        lineView.snp.makeConstraints{
+            $0.height.equalTo(5)
+            $0.top.equalTo(textField.snp.bottom)
+            $0.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
+        }
         tableView.snp.makeConstraints{
-            $0.top.equalTo(textField.snp.bottom).offset(10)
+            $0.top.equalTo(lineView.snp.bottom).offset(10)
             $0.horizontalEdges.equalTo(view.safeAreaLayoutGuide).inset(20)
             $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
     }
     
     func configUI() {
+        self.navigationController?.navigationBar.tintColor = .white
+       
         navigationItem.title = "박스오피스"
-        let url = URL(string: "https://cdn.imweb.me/thumbnail/20181203/5c04d2502a3b5.jpg")
+        let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.black]
+        self.navigationController?.navigationBar.titleTextAttributes = textAttributes
+        
+        let url = URL(string: "https://wallpapercave.com/wp/wp10021119.jpg")
         backgroundImage.kf.setImage(with: url)
-        backgroundImage.contentMode = .scaleAspectFill
+        backgroundImage.contentMode = .scaleToFill
         
         backgroundView.backgroundColor = .black
         backgroundView.layer.opacity = 0.5
     
         textField.backgroundColor = .clear
         textField.textColor = .white
-        textField.layer.addBorder([.bottom], color: .white, width: textField.frame.width)
+        textField.layer.addBorder([.bottom], color: .white, width: view.frame.width - 40)
+        
+        lineView.backgroundColor = .white
+        
         tableView.backgroundColor = .clear
     }
     
