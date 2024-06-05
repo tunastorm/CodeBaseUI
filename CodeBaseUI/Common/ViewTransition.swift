@@ -7,40 +7,44 @@
 import UIKit
 
 
+
 protocol ViewTransition {
-    // 파라미터 data를 Optional Generic으로 선언하여 data를 넘겨주지 않는 경우에도 대응
-    func pushAfterView<T> (view: UIViewController, data: T?)
     
-    func presentAfterView<T> (view: UIViewController, data: T?)
+   func pushAfterView<T> (view: UIViewController, data: T?)
+    
+   func presentAfterView<T> (view: UIViewController, data: T?)
     
     func navigationPresentAfterView<T> (view: UIViewController, data: T?)
     
     func navigationPresentFullAfterView<T> (view: UIViewController, data: T?)
-    
-    func popBeforeView()
-    
-    func dismissBeforeView()
 }
 
-
-//private struct AssociatedKeys {
-//    static var data: Element?
-//}
-
-extension UIViewController: ViewTransition {
+@objc protocol ViewReturn {
         
+    @objc optional func popBeforeView()
     
-//    var data: Element? {
+    @objc optional func dismissBeforeView()
+}
+
+//struct DataRouter<T> {
+//    private var bucket: T?
+//    var query: T {
 //        get {
-//            (objc_getAssociatedObject(self, &AssociatedKeys.lastOffsetY) as? MTLStructType?) ??
+//            return bucket
 //        }
 //        set {
-//            objc_setAssociatedObject(self, &AssociatedKeys.lastOffsetY, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+//            bucket = newValue
 //        }
 //    }
+//}
+
+
+extension UIViewController: ViewTransition {
     
-    
-    func pushAfterView<T>(view: UIViewController, data: T?) {
+    func pushAfterView<T> (view: UIViewController, data: T?) {
+//        if let data {
+//            DataRouter<T> = data
+//        }
         self.navigationController?.pushViewController(view, animated: true)
     }
     
@@ -58,14 +62,5 @@ extension UIViewController: ViewTransition {
         nav.modalPresentationStyle = .fullScreen
         present(nav, animated: true)
     }
-    // 뷰 컨트롤러에서 selector로 가리킬 수 있도록 Object-C 속성의 함수로 선언
-    @objc func popBeforeView() {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    @objc func dismissBeforeView() {
-        dismiss(animated: true)
-    }
 }
-
 

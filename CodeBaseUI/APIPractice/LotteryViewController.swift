@@ -8,22 +8,39 @@
 import UIKit
 
 class LotteryViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setButtons()
+        configNavigationBar()
+        configHierarchy()
+        configLayout()
+        configUI()
+    }
+}
 
-        // Do any additional setup after loading the view.
+extension LotteryViewController: CodeBaseUI {
+    func configHierarchy() {
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func configLayout() {
+     
     }
-    */
+    
+    func configUI() {
+        navigationItem.title = "로또"
+        view.backgroundColor = .white
+    }
+    
+    func configNavigationBar() {
+        
+    }
+    
+    func setButtons() {
 
+    }
 }
+
+
+

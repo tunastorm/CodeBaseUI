@@ -12,18 +12,24 @@ class BoxOfficeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+     
+    }
+}
+
+extension BoxOfficeViewController: CodeBaseUI {
+    func configHierarchy() {
+       
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func configLayout() {
+       
     }
-    */
-
+    
+    func configUI() {
+        navigationItem.title = "박스오피스"
+        view.backgroundColor = .white
+        
+    }
+    
+    
 }

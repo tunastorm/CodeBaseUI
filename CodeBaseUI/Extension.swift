@@ -30,5 +30,13 @@ extension UIButton {
 }
 
 
+extension UIImageView {
+    func setCornerRadius() {
+        self.layer.cornerRadius = self.frame.height * 0.1
+        self.layer.masksToBounds = true
+    }
+}
+
+
 
 
